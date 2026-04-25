@@ -52,9 +52,9 @@ loginForm.addEventListener('submit', (e) => {
     loginMsg.classList.add('text-green-600');
 
     isLoggedIn = true;
-
-    // ✅ optional (persistent login)
     localStorage.setItem('isLoggedIn', 'true');
+
+    updateAuthUI();
 
     setTimeout(() => {
       closeLoginModal();
@@ -67,10 +67,9 @@ loginForm.addEventListener('submit', (e) => {
   }
 });
 
-// ✅ page reload hole login thakbe
-if(localStorage.getItem('isLoggedIn') === 'true'){
-  isLoggedIn = true;
-}
+
+
+
 
 // ================= REGISTER =================
 const registerModal = document.getElementById('registerModal');
@@ -195,6 +194,8 @@ packageBookingForm.addEventListener('submit', (e) => {
     title: packageTitle.textContent,
     duration: packageDuration.textContent,
     price: packagePrice.textContent,
+    image: "https://via.placeholder.com/80",
+    rating: "N/A",
     name: inputs[0].value,
     phone: inputs[1].value,
     address: inputs[2].value,
@@ -235,6 +236,8 @@ let currentBooking = {};
 
 document.querySelectorAll('.destinationCard').forEach(card => {
   card.addEventListener('click', () => {
+
+    selectedHotel = null; // ✅ ADD THIS
 
     currentBooking = {
       title: card.dataset.title,
@@ -285,7 +288,7 @@ document.querySelectorAll('.destinationCard').forEach(card => {
         </button>
       `;
 
-      div.querySelector('.selectPackageBtn').addEventListener('click', () => {
+     div.querySelector('.selectPackageBtn').addEventListener('click', (e) => {
 
   if(!isLoggedIn){
     showWarning();
@@ -293,17 +296,16 @@ document.querySelectorAll('.destinationCard').forEach(card => {
     return;
   }
 
-  // 👉 আগের selected remove
-  document.querySelectorAll('.selectPackageBtn').forEach(btn => {
-    btn.classList.remove('bg-green-600');
-    btn.classList.add('bg-blue-600');
-    btn.textContent = "Select";
+  // সব button reset
+  document.querySelectorAll('.selectPackageBtn').forEach(b => {
+    b.classList.remove('bg-green-600');
+    b.classList.add('bg-blue-600');
+    b.textContent = "Select";
   });
 
-  // 👉 নতুন selected save
   selectedHotel = pkg;
 
-  const btn = div.querySelector('.selectPackageBtn');
+  const btn = e.target;
   btn.classList.remove('bg-blue-600');
   btn.classList.add('bg-green-600');
   btn.textContent = "Selected ✅";
@@ -471,3 +473,36 @@ bookDestinationBtn.addEventListener('click', () => {
   loadBookings();
   updateBookingCount();
 });
+
+const logoutBtn = document.getElementById('logoutBtn');
+
+// Login হলে logout button show
+function updateAuthUI(){
+  if(isLoggedIn){
+    logoutBtn.classList.remove('hidden');
+    loginBtn.classList.add('hidden');
+    loginBtnMobile.classList.add('hidden');
+  } else {
+    logoutBtn.classList.add('hidden');
+    loginBtn.classList.remove('hidden');
+    loginBtnMobile.classList.remove('hidden');
+  }
+}
+
+// Logout
+logoutBtn.addEventListener('click', () => {
+  isLoggedIn = false;
+  localStorage.removeItem('isLoggedIn');
+
+  updateAuthUI();
+  alert("Logged out successfully 👋");
+});
+
+// ================= INIT =================
+if(localStorage.getItem('isLoggedIn') === 'true'){
+  isLoggedIn = true;
+}
+
+updateAuthUI();
+loadBookings();
+updateBookingCount();

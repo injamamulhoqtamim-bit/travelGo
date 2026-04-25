@@ -13,32 +13,46 @@
   <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
     <h1 class="text-2xl font-bold text-blue-600">TravelGo</h1>
     <ul class="hidden md:flex gap-6 items-center">
-      <li><a href="#home" class="hover:text-blue-500">Home</a></li>
-      <li><a href="#destinations" class="hover:text-blue-500">Destinations</a></li>
-      <li><a href="#packages" class="hover:text-blue-500">Packages</a></li>
-      <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
-      <li><button id="loginBtn" class="bg-blue-600 text-white px-4 py-1 rounded">Login</button></li>
-      <li class="relative">
-  <button id="historyBtn" class="hover:text-blue-500">
-    📦 Bookings
-  </button>
+  <li><a href="#home" class="hover:text-blue-500">Home</a></li>
+  <li><a href="#destinations" class="hover:text-blue-500">Destinations</a></li>
+  <li><a href="#packages" class="hover:text-blue-500">Packages</a></li>
+  <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
 
-  <!-- Notification Badge -->
-  <span id="bookingCount"
-    class="absolute -top-2 -right-3 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full hidden">
-    0
-  </span>
-</li>
-    </ul>
+  <!-- Login Button -->
+  <li>
+    <button id="loginBtn" class="bg-blue-600 text-white px-4 py-1 rounded">
+      Login
+    </button>
+  </li>
+
+  <!-- ✅ Logout Button (NEW) -->
+  <li>
+    <button id="logoutBtn" class="bg-red-500 text-white px-4 py-1 rounded hidden">
+      Logout
+    </button>
+  </li>
+
+  <!-- Booking -->
+  <li class="relative">
+    <button id="historyBtn" class="hover:text-blue-500">
+      📦 Bookings
+    </button>
+
+    <span id="bookingCount"
+      class="absolute -top-2 -right-3 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full hidden">
+      0
+    </span>
+  </li>
+</ul>
     <button id="menuBtn" class="md:hidden text-2xl">☰</button>
   </div>
 
   <!-- Mobile Menu -->
   <div id="mobileMenu" class="hidden md:hidden px-4 pb-4">
-    <a href="#" class="block py-2">Home</a>
-    <a href="#" class="block py-2">Destinations</a>
-    <a href="#" class="block py-2">Packages</a>
-    <a href="#" class="block py-2">Contact</a>
+    <a href="#home" class="block py-2">Home</a>
+<a href="#destinations" class="block py-2">Destinations</a>
+<a href="#packages" class="block py-2">Packages</a>
+<a href="#contact" class="block py-2">Contact</a>
     <button id="loginBtnMobile" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded w-full">Login</button>
   </div>
 </nav>
@@ -453,10 +467,7 @@
   </div>
 </div>
 
-    <!-- Book Button -->
-    <button id="bookDestinationBtn" class="bg-blue-600 text-white px-4 py-2 rounded w-full">
-      Book This Destination
-    </button>
+    
   </div>
 </div>
 
