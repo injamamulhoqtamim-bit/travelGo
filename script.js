@@ -7,6 +7,7 @@ menuBtn.addEventListener('click', () => {
 });
 
 // ================= LOGIN =================
+// ================= LOGIN =================
 const loginModal = document.getElementById('loginModal');
 const loginBtn = document.getElementById('loginBtn');
 const loginBtnMobile = document.getElementById('loginBtnMobile');
@@ -16,33 +17,44 @@ const loginMsg = document.getElementById('loginMsg');
 
 let isLoggedIn = false;
 
+// Open Login Modal
 function openLogin(){
   loginModal.classList.remove('hidden');
   loginModal.classList.add('flex');
 }
 
+// Close Login Modal
 function closeLoginModal(){
   loginModal.classList.add('hidden');
   loginModal.classList.remove('flex');
 }
 
+// ✅ IMPORTANT (missing chilo)
 loginBtn.addEventListener('click', openLogin);
 loginBtnMobile.addEventListener('click', openLogin);
 closeLogin.addEventListener('click', closeLoginModal);
 
+// Login Submit
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const email = loginForm[0].value;
   const password = loginForm[1].value;
 
+  let users = JSON.parse(localStorage.getItem('users')) || [];
+
+  const validUser = users.find(u => u.email === email && u.password === password);
+
   loginMsg.classList.remove('text-red-600', 'text-green-600');
 
-  if(email === "admin@gmail.com" && password === "123456"){
+  if(validUser){
     loginMsg.textContent = "Login Successful ✅";
     loginMsg.classList.add('text-green-600');
 
     isLoggedIn = true;
+
+    // ✅ optional (persistent login)
+    localStorage.setItem('isLoggedIn', 'true');
 
     setTimeout(() => {
       closeLoginModal();
@@ -54,6 +66,67 @@ loginForm.addEventListener('submit', (e) => {
     loginMsg.classList.add('text-red-600');
   }
 });
+
+// ✅ page reload hole login thakbe
+if(localStorage.getItem('isLoggedIn') === 'true'){
+  isLoggedIn = true;
+}
+
+// ================= REGISTER =================
+const registerModal = document.getElementById('registerModal');
+const openRegister = document.getElementById('openRegister');
+const closeRegister = document.getElementById('closeRegister');
+const registerForm = document.getElementById('registerForm');
+const registerMsg = document.getElementById('registerMsg');
+
+// Open Register
+openRegister.addEventListener('click', () => {
+  closeLoginModal();
+  registerModal.classList.remove('hidden');
+  registerModal.classList.add('flex');
+});
+
+// Close Register
+closeRegister.addEventListener('click', () => {
+  registerModal.classList.add('hidden');
+  registerModal.classList.remove('flex');
+});
+
+// Register Submit
+registerForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = registerForm[0].value;
+  const email = registerForm[1].value;
+  const password = registerForm[2].value;
+
+  let users = JSON.parse(localStorage.getItem('users')) || [];
+
+  registerMsg.classList.remove('text-red-600', 'text-green-600');
+
+  const exists = users.find(u => u.email === email);
+
+  if(exists){
+    registerMsg.textContent = "Email already registered ❌";
+    registerMsg.classList.add('text-red-600');
+    return;
+  }
+
+  users.push({ name, email, password });
+
+  localStorage.setItem('users', JSON.stringify(users));
+
+  registerMsg.textContent = "Registration Successful ✅";
+  registerMsg.classList.add('text-green-600');
+
+  setTimeout(() => {
+    registerModal.classList.add('hidden');
+    registerModal.classList.remove('flex');
+    openLogin();
+    registerForm.reset();
+  }, 1000);
+});
+
 
 // ================= WARNING =================
 const warningPopup = document.getElementById('warningPopup');
@@ -231,13 +304,13 @@ function loadBookings(){
     div.className = "flex items-center gap-4 bg-gray-100 p-4 rounded-lg shadow";
 
     div.innerHTML = `
-      <img src="${b.image}" class="w-20 h-16 object-cover rounded"/>
-      <div>
-        <h3 class="font-bold">${b.title}</h3>
-        <p class="text-sm text-gray-500">⭐ ${b.rating}</p>
-        <p class="text-xs text-gray-400">${b.date}</p>
-      </div>
-    `;
+  <img src="${b.image || 'https://via.placeholder.com/80'}" class="w-20 h-16 object-cover rounded"/>
+  <div>
+    <h3 class="font-bold">${b.title}</h3>
+    <p class="text-sm text-gray-500">⭐ ${b.rating || 'N/A'}</p>
+    <p class="text-xs text-gray-400">${b.date}</p>
+  </div>
+`;
 
     bookingList.appendChild(div);
   });
@@ -294,3 +367,12 @@ document.getElementById('historyBtn').addEventListener('click', () => {
 // INIT
 loadBookings();
 updateBookingCount();
+
+
+// Hero Registration Button
+const heroRegisterBtn = document.getElementById('heroRegisterBtn');
+
+heroRegisterBtn.addEventListener('click', () => {
+  registerModal.classList.remove('hidden');
+  registerModal.classList.add('flex');
+});
