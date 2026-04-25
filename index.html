@@ -129,165 +129,204 @@
 
     <!-- CARD TEMPLATE -->
     <!-- Rangamati -->
-    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition duration-300"
-      data-title="Rangamati" data-budget="low" data-rating="4.5"
-      data-map="https://maps.google.com/?q=Rangamati"
-      data-image="./photo/rangamati/kaptai lake.jpg"
-      data-places="Kaptai Lake,Sajek Valley,Hanging Bridge,Shuvolong Waterfall">
+    <!-- Rangamati -->
+<div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition duration-300"
+  data-title="Rangamati" data-budget="low" data-rating="4.5"
+  data-map="https://maps.google.com/?q=Rangamati"
+  data-image="./photo/rangamati/kaptai lake.jpg"
+  data-places="Kaptai Lake,Sajek Valley,Hanging Bridge,Shuvolong Waterfall"
+  data-packages='[
+    {"name":"Budget Hotel","price":"৳3000","features":"Fan Room"},
+    {"name":"Standard Hotel","price":"৳7000","features":"AC + Breakfast"},
+    {"name":"Luxury Resort","price":"৳15000","features":"Lake View + Pool"}
+  ]'>
 
-      <div class="relative">
-        <img src="./photo/rangamati/kaptai lake.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition duration-300" />
+  <div class="relative">
+    <img src="./photo/rangamati/kaptai lake.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition duration-300" />
+    <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Low Budget</span>
+    <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.5</span>
+  </div>
 
-        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Low Budget</span>
-        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.5</span>
-      </div>
+  <div class="p-4">
+    <h3 class="text-xl font-semibold">Rangamati</h3>
+    <p class="text-sm text-gray-500">Beautiful hills and Kaptai Lake.</p>
+  </div>
+</div>
 
-      <div class="p-4">
-        <h3 class="text-xl font-semibold">Rangamati</h3>
-        <p class="text-sm text-gray-500 mb-2">Beautiful hills and Kaptai Lake.</p>
-        <p class="text-xs text-gray-400">Click to explore →</p>
-      </div>
-    </div>
+<!-- Bandarban -->
+<div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+  data-title="Bandarban" data-budget="medium" data-rating="4.7"
+  data-map="https://maps.google.com/?q=Bandarban"
+  data-image="./photo/bandorban/mountain.jpg"
+  data-places="Nilgiri,Nilachal,Boga Lake,Nafakhum Waterfall"
+  data-packages='[
+    {"name":"Budget Cottage","price":"৳4000","features":"Hill View"},
+    {"name":"Standard Hotel","price":"৳9000","features":"AC + Food"},
+    {"name":"Luxury Resort","price":"৳18000","features":"Mountain View + Pool"}
+  ]'>
 
-    <!-- Bandarban -->
-    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition duration-300"
-      data-title="Bandarban" data-budget="medium" data-rating="4.7"
-      data-map="https://maps.google.com/?q=Bandarban"
-      data-image="./photo/bandorban/mountain.jpg"
-      data-places="Nilgiri,Nilachal,Boga Lake,Nafakhum Waterfall">
+  <div class="relative">
+    <img src="./photo/bandorban/mountain.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+    <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Medium</span>
+    <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.7</span>
+  </div>
 
-      <div class="relative">
-        <img src="./photo/bandorban/mountain.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition duration-300" />
-        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Medium</span>
-        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.7</span>
-      </div>
+  <div class="p-4">
+    <h3 class="text-xl font-semibold">Bandarban</h3>
+    <p class="text-sm text-gray-500">Mountain beauty and waterfalls.</p>
+  </div>
+</div>
 
-      <div class="p-4">
-        <h3 class="text-xl font-semibold">Bandarban</h3>
-        <p class="text-sm text-gray-500">Mountain beauty and waterfalls.</p>
-      </div>
-    </div>
+<!-- Cox's Bazar -->
+<div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+  data-title="Cox's Bazar" data-budget="high" data-rating="4.8"
+  data-map="https://maps.google.com/?q=Coxs+Bazar"
+  data-image="./photo/Cox's Bazar/cox.jpg"
+  data-places="Inani Beach,Himchari,Laboni Beach,Marine Drive"
+  data-packages='[
+    {"name":"Budget Hotel","price":"৳5000","features":"Near Beach"},
+    {"name":"Standard Hotel","price":"৳12000","features":"Sea View + Breakfast"},
+    {"name":"Luxury Resort","price":"৳25000","features":"5 Star + Private Beach"}
+  ]'>
 
-    <!-- Cox -->
-    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
-      data-title="Cox's Bazar" data-budget="high" data-rating="4.8"
-      data-map="https://maps.google.com/?q=Coxs+Bazar"
-      data-image="./photo/Cox's Bazar/cox.jpg"
-      data-places="Inani Beach,Himchari,Laboni Beach,Marine Drive">
+  <div class="relative">
+    <img src="./photo/Cox's Bazar/cox.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+    <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">High</span>
+    <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.8</span>
+  </div>
 
-      <div class="relative">
-        <img src="./photo/Cox's Bazar/cox.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
-        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">High</span>
-        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.8</span>
-      </div>
+  <div class="p-4">
+    <h3 class="text-xl font-semibold">Cox's Bazar</h3>
+    <p class="text-sm text-gray-500">World's longest sea beach.</p>
+  </div>
+</div>
 
-      <div class="p-4">
-        <h3 class="text-xl font-semibold">Cox's Bazar</h3>
-        <p class="text-sm text-gray-500">World's longest sea beach.</p>
-      </div>
-    </div>
+<!-- Sylhet -->
+<div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+  data-title="Sylhet" data-budget="medium" data-rating="4.6"
+  data-map="https://maps.google.com/?q=Sylhet"
+  data-image="./photo/Sylhet/mosharraf-hossain-i3W2OJRKsL0-unsplash.jpg"
+  data-places="Jaflong,Ratargul,Bichanakandi,Tea Garden"
+  data-packages='[
+    {"name":"Budget Hotel","price":"৳3500","features":"City Area"},
+    {"name":"Standard Hotel","price":"৳8000","features":"AC + Breakfast"},
+    {"name":"Luxury Resort","price":"৳17000","features":"Tea Garden View"}
+  ]'>
 
-    <!-- Sylhet -->
-    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
-      data-title="Sylhet" data-budget="medium" data-rating="4.6"
-      data-map="https://maps.google.com/?q=Sylhet"
-      data-image="./photo/Sylhet/mosharraf-hossain-i3W2OJRKsL0-unsplash.jpg"
-      data-places="Jaflong,Ratargul Swamp Forest,Bichanakandi,Tea Gardens">
+  <div class="relative">
+    <img src="./photo/Sylhet/mosharraf-hossain-i3W2OJRKsL0-unsplash.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+    <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Medium</span>
+    <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.6</span>
+  </div>
 
-      <div class="relative">
-        <img src="./photo/Sylhet/mosharraf-hossain-i3W2OJRKsL0-unsplash.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
-        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Medium</span>
-        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.6</span>
-      </div>
+  <div class="p-4">
+    <h3 class="text-xl font-semibold">Sylhet</h3>
+    <p class="text-sm text-gray-500">Tea gardens and natural beauty.</p>
+  </div>
+</div>
 
-      <div class="p-4">
-        <h3 class="text-xl font-semibold">Sylhet</h3>
-        <p class="text-sm text-gray-500">Tea gardens and natural beauty.</p>
-      </div>
-    </div>
+<!-- Chittagong -->
+<div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+  data-title="Chittagong" data-budget="medium" data-rating="4.4"
+  data-map="https://maps.google.com/?q=Chittagong"
+  data-image="./photo/Chittagong/tahsin-islam-gc8IPK97-hE-unsplash.jpg"
+  data-places="Patenga Beach,Foy's Lake,Batali Hill"
+  data-packages='[
+    {"name":"Budget Hotel","price":"৳3000","features":"City View"},
+    {"name":"Standard Hotel","price":"৳8500","features":"AC + Food"},
+    {"name":"Luxury Hotel","price":"৳16000","features":"Sea View"}
+  ]'>
 
-    <!-- Chittagong -->
-    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
-      data-title="Chittagong" data-budget="medium" data-rating="4.4"
-      data-map="https://maps.google.com/?q=Chittagong"
-      data-image="./photo/Chittagong/tahsin-islam-gc8IPK97-hE-unsplash.jpg"
-      data-places="Patenga Beach,Foy's Lake,Batali Hill,Naval Beach">
+  <div class="relative">
+    <img src="./photo/Chittagong/tahsin-islam-gc8IPK97-hE-unsplash.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+    <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Medium</span>
+    <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.4</span>
+  </div>
 
-      <div class="relative">
-        <img src="./photo/Chittagong/tahsin-islam-gc8IPK97-hE-unsplash.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
-        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Medium</span>
-        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.4</span>
-      </div>
+  <div class="p-4">
+    <h3 class="text-xl font-semibold">Chittagong</h3>
+    <p class="text-sm text-gray-500">Port city with hills and sea.</p>
+  </div>
+</div>
 
-      <div class="p-4">
-        <h3 class="text-xl font-semibold">Chittagong</h3>
-        <p class="text-sm text-gray-500">Port city with hills and sea.</p>
-      </div>
-    </div>
+<!-- Sundarban -->
+<div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+  data-title="Sundarban" data-budget="high" data-rating="4.9"
+  data-map="https://maps.google.com/?q=Sundarban"
+  data-image="./photo/Sundarban/mamun-srizon-mNVk2uupXs0-unsplash.jpg"
+  data-places="Tiger Point,Harbaria,Karamjal"
+  data-packages='[
+    {"name":"Budget Tour","price":"৳6000","features":"Boat Trip"},
+    {"name":"Standard Tour","price":"৳14000","features":"Food + Guide"},
+    {"name":"Luxury Tour","price":"৳30000","features":"Premium Boat"}
+  ]'>
 
-    <!-- Sundarban -->
-    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
-      data-title="Sundarban" data-budget="high" data-rating="4.9"
-      data-map="https://maps.google.com/?q=Sundarban"
-      data-image="./photo/Sundarban/mamun-srizon-mNVk2uupXs0-unsplash.jpg"
-      data-places="Royal Bengal Tiger,Harbaria,Karamjal,Kotka Beach">
+  <div class="relative">
+    <img src="./photo/Sundarban/mamun-srizon-mNVk2uupXs0-unsplash.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+    <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">High</span>
+    <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.9</span>
+  </div>
 
-      <div class="relative">
-        <img src="./photo/Sundarban/mamun-srizon-mNVk2uupXs0-unsplash.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
-        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">High</span>
-        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.9</span>
-      </div>
+  <div class="p-4">
+    <h3 class="text-xl font-semibold">Sundarban</h3>
+    <p class="text-sm text-gray-500">Largest mangrove forest in the world.</p>
+  </div>
+</div>
 
-      <div class="p-4">
-        <h3 class="text-xl font-semibold">Sundarban</h3>
-        <p class="text-sm text-gray-500">Largest mangrove forest.</p>
-      </div>
-    </div>
+<!-- Sunamganj -->
+<div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+  data-title="Sunamganj" data-budget="low" data-rating="4.3"
+  data-map="https://maps.google.com/?q=Sunamganj"
+  data-image="./photo/Sunamganj/sabbir-ahmed-x6KenmrJwOE-unsplash.jpg"
+  data-places="Tanguar Haor,Niladri Lake"
+  data-packages='[
+    {"name":"Budget Stay","price":"৳2500","features":"Local Hotel"},
+    {"name":"Standard Stay","price":"৳6000","features":"Boat + Food"},
+    {"name":"Luxury Stay","price":"৳12000","features":"Resort View"}
+  ]'>
 
-    <!-- Sunamganj -->
-    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
-      data-title="Sunamganj" data-budget="low" data-rating="4.3"
-      data-map="https://maps.google.com/?q=Sunamganj"
-      data-image="./photo/Sunamganj/sabbir-ahmed-x6KenmrJwOE-unsplash.jpg"
-      data-places="Tanguar Haor,Niladri Lake,Barikka Tila,Watch Tower">
+  <div class="relative">
+    <img src="./photo/Sunamganj/sabbir-ahmed-x6KenmrJwOE-unsplash.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+    <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Low</span>
+    <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.3</span>
+  </div>
 
-      <div class="relative">
-        <img src="./photo/Sunamganj/sabbir-ahmed-x6KenmrJwOE-unsplash.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
-        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Low</span>
-        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.3</span>
-      </div>
+  <div class="p-4">
+    <h3 class="text-xl font-semibold">Sunamganj</h3>
+    <p class="text-sm text-gray-500">Haor and Water Beauty.</p>
+  </div>
+</div>
 
-      <div class="p-4">
-        <h3 class="text-xl font-semibold">Sunamganj</h3>
-        <p class="text-sm text-gray-500">Haor and water beauty.</p>
-      </div>
-    </div>
+<!-- Netrokona -->
+<div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+  data-title="Netrokona" data-budget="low" data-rating="4.2"
+  data-map="https://maps.google.com/?q=Netrokona"
+  data-image="./photo/Netrokona/netrokona.jpg"
+  data-places="Birishiri,Someshwari River"
+  data-packages='[
+    {"name":"Budget Stay","price":"৳2000","features":"Basic Room"},
+    {"name":"Standard Stay","price":"৳5000","features":"AC + Food"},
+    {"name":"Luxury Stay","price":"৳10000","features":"Resort"}
+  ]'>
 
-    <!-- Netrokona -->
-    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
-      data-title="Netrokona" data-budget="low" data-rating="4.2"
-      data-map="https://maps.google.com/?q=Netrokona"
-      data-image="./photo/Netrokona/netrokona.jpg"
-      data-places="Birishiri,Someshwari River,Susang Durgapur,China Matir Pahar">
+  <div class="relative">
+    <img src="./photo/Netrokona/netrokona.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+    <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Low</span>
+    <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.2</span>
+  </div>
 
-      <div class="relative">
-        <img src=".//photo/netrokona/netrokona.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
-        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Low</span>
-        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.2</span>
-      </div>
-
-      <div class="p-4">
-        <h3 class="text-xl font-semibold">Netrokona</h3>
-        <p class="text-sm text-gray-500">Rural nature and hills.</p>
-      </div>
-    </div>
+  <div class="p-4">
+    <h3 class="text-xl font-semibold">Netrokona</h3>
+    <p class="text-sm text-gray-500">Rural Nature & hills.</p>
+  </div>
+</div>
     
 
   </div>
 
   <!-- 404 Not Found -->
 <div id="noResult" class="hidden text-center col-span-3 mt-6">
-  <h3 class="text-2xl font-bold text-red-500">404 Not Found ❌</h3>
+  <h3 class="text-2xl font-bold text-red-500">404 Not Found </h3>
   <p class="text-gray-500">No destination matched your search</p>
 </div>
 </section>
@@ -385,7 +424,8 @@
 <!-- Destination Modal -->
 <!-- Destination Modal -->
 <div id="destinationModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
-  <div class="bg-white p-6 rounded-xl w-96 relative text-center">
+  <div class="bg-white p-6 rounded-xl w-96 relative text-center max-h-[90vh] overflow-y-auto">
+    
     <button id="closeDestination" class="absolute top-2 right-2 text-xl">✖</button>
 
     <img id="destinationImage" class="w-full h-40 object-cover rounded mb-3" />
@@ -397,10 +437,21 @@
 
     <ul id="destinationList" class="list-disc pl-5 text-left mb-3"></ul>
 
-    <!-- Google Map -->
+    <!-- Packages -->
+    <div id="destinationPackages" class="mt-4 space-y-2 text-left"></div>
+
+    <!-- Map -->
     <a id="mapLink" href="#" target="_blank" class="text-blue-600 underline block mb-3">
       View on Google Map 📍
     </a>
+
+    <!-- ✅ FIXED BUTTON (inside modal) -->
+    <button id="bookDestinationBtn" class="bg-blue-600 text-white px-4 py-2 rounded w-full">
+      Book This Destination
+    </button>
+
+  </div>
+</div>
 
     <!-- Book Button -->
     <button id="bookDestinationBtn" class="bg-blue-600 text-white px-4 py-2 rounded w-full">

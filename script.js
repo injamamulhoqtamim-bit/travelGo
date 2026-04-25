@@ -220,6 +220,7 @@ packageBookingForm.addEventListener('submit', (e) => {
 });
 
 // ================= DESTINATION =================
+// ================= DESTINATION =================
 const destinationModal = document.getElementById('destinationModal');
 const closeDestination = document.getElementById('closeDestination');
 
@@ -228,9 +229,7 @@ const destinationList = document.getElementById('destinationList');
 const destinationImage = document.getElementById('destinationImage');
 const destinationRating = document.getElementById('destinationRating');
 const mapLink = document.getElementById('mapLink');
-const bookDestinationBtn = document.getElementById('bookDestinationBtn');
-
-const bookingList = document.getElementById('bookingList');
+const destinationPackages = document.getElementById('destinationPackages');
 
 let currentBooking = {};
 
@@ -248,6 +247,7 @@ document.querySelectorAll('.destinationCard').forEach(card => {
     mapLink.href = card.dataset.map;
     destinationRating.textContent = "⭐ " + card.dataset.rating;
 
+    // Places
     destinationList.innerHTML = "";
     card.dataset.places.split(',').forEach(place => {
       const li = document.createElement('li');
@@ -255,17 +255,37 @@ document.querySelectorAll('.destinationCard').forEach(card => {
       destinationList.appendChild(li);
     });
 
-    destinationModal.classList.remove('hidden');
-    destinationModal.classList.add('flex');
-  });
-});
+    // 🔥 Packages Load
+    destinationPackages.innerHTML = "";
 
-closeDestination.addEventListener('click', () => {
-  destinationModal.classList.add('hidden');
-  destinationModal.classList.remove('flex');
-});
+    let packages = [];
 
-bookDestinationBtn.addEventListener('click', () => {
+    try {
+      packages = JSON.parse(card.dataset.packages);
+    } catch {
+      packages = [];
+    }
+
+    if(packages.length === 0){
+      destinationPackages.innerHTML = "<p class='text-gray-500'>No packages available</p>";
+    }
+
+    packages.forEach(pkg => {
+      const div = document.createElement('div');
+      div.className = "border p-3 rounded-lg flex justify-between items-center";
+
+      div.innerHTML = `
+        <div>
+          <h4 class="font-bold">${pkg.name}</h4>
+          <p class="text-sm text-gray-500">${pkg.features}</p>
+          <p class="text-blue-600 font-bold">${pkg.price}</p>
+        </div>
+        <button class="selectPackageBtn bg-blue-600 text-white px-3 py-1 rounded">
+          Select
+        </button>
+      `;
+
+      div.querySelector('.selectPackageBtn').addEventListener('click', () => {
 
   if(!isLoggedIn){
     showWarning();
@@ -273,22 +293,38 @@ bookDestinationBtn.addEventListener('click', () => {
     return;
   }
 
-  let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
-
-  bookings.push({
-    ...currentBooking,
-    date: new Date().toLocaleString()
+  // 👉 আগের selected remove
+  document.querySelectorAll('.selectPackageBtn').forEach(btn => {
+    btn.classList.remove('bg-green-600');
+    btn.classList.add('bg-blue-600');
+    btn.textContent = "Select";
   });
 
-  localStorage.setItem('bookings', JSON.stringify(bookings));
+  // 👉 নতুন selected save
+  selectedHotel = pkg;
 
-  alert("Booking Saved ✅");
+  const btn = div.querySelector('.selectPackageBtn');
+  btn.classList.remove('bg-blue-600');
+  btn.classList.add('bg-green-600');
+  btn.textContent = "Selected ✅";
+});
 
-  loadBookings();
-  updateBookingCount();
+      destinationPackages.appendChild(div);
+    });
+
+    destinationModal.classList.remove('hidden');
+    destinationModal.classList.add('flex');
+  });
+});
+
+// Close
+closeDestination.addEventListener('click', () => {
+  destinationModal.classList.add('hidden');
+  destinationModal.classList.remove('flex');
 });
 
 // ================= LOAD BOOKINGS =================
+const bookingList = document.getElementById('bookingList');
 function loadBookings(){
   let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
 
@@ -391,4 +427,47 @@ const heroRegisterBtn = document.getElementById('heroRegisterBtn');
 heroRegisterBtn.addEventListener('click', () => {
   registerModal.classList.remove('hidden');
   registerModal.classList.add('flex');
+});
+
+// "Book This Destination" button
+
+const bookDestinationBtn = document.getElementById('bookDestinationBtn');
+
+let selectedHotel = null; // 🔥 এটা উপরে declare করো
+
+bookDestinationBtn.addEventListener('click', () => {
+
+  if(!isLoggedIn){
+    showWarning();
+    openLogin();
+    return;
+  }
+
+  let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+  if(!selectedHotel){
+    alert("Please select a hotel first ❗");
+    return;
+  }
+
+  bookings.push({
+    title: destinationTitle.textContent + " - " + selectedHotel.name,
+    price: selectedHotel.price,
+    date: new Date().toLocaleString(),
+    image: destinationImage.src,
+    rating: destinationRating.textContent.replace("⭐ ", "")
+  });
+
+  // ✅ IMPORTANT (missing chilo)
+  localStorage.setItem('bookings', JSON.stringify(bookings));
+
+  alert("Destination Booked ✅");
+
+  selectedHotel = null;
+
+  destinationModal.classList.add('hidden');
+  destinationModal.classList.remove('flex');
+
+  loadBookings();
+  updateBookingCount();
 });
