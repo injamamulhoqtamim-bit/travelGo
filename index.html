@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TravelGo - Tour & Travel</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+<!-- Navbar -->
+<nav class="bg-white shadow-md fixed w-full top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-blue-600">TravelGo</h1>
+    <ul class="hidden md:flex gap-6 items-center">
+      <li><a href="#home" class="hover:text-blue-500">Home</a></li>
+      <li><a href="#destinations" class="hover:text-blue-500">Destinations</a></li>
+      <li><a href="#packages" class="hover:text-blue-500">Packages</a></li>
+      <li><a href="#contact" class="hover:text-blue-500">Contact</a></li>
+      <li><button id="loginBtn" class="bg-blue-600 text-white px-4 py-1 rounded">Login</button></li>
+      <li class="relative">
+  <button id="historyBtn" class="hover:text-blue-500">
+    📦 Bookings
+  </button>
+
+  <!-- Notification Badge -->
+  <span id="bookingCount"
+    class="absolute -top-2 -right-3 bg-red-500 text-white text-xs px-2 py-0.5 rounded-full hidden">
+    0
+  </span>
+</li>
+    </ul>
+    <button id="menuBtn" class="md:hidden text-2xl">☰</button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden px-4 pb-4">
+    <a href="#" class="block py-2">Home</a>
+    <a href="#" class="block py-2">Destinations</a>
+    <a href="#" class="block py-2">Packages</a>
+    <a href="#" class="block py-2">Contact</a>
+    <button id="loginBtnMobile" class="mt-2 bg-blue-600 text-white px-4 py-2 rounded w-full">Login</button>
+  </div>
+</nav>
+
+<!-- Login Modal -->
+<div id="loginModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-xl w-80 relative">
+    <button id="closeLogin" class="absolute top-2 right-2 text-xl">✖</button>
+    <h2 class="text-2xl font-bold mb-4 text-center">Login</h2>
+    <form id="loginForm" class="space-y-3">
+      <input type="email" placeholder="Email" required class="w-full p-2 border rounded" />
+      <input type="password" placeholder="Password" required class="w-full p-2 border rounded" />
+      <button type="submit" class="bg-blue-600 text-white w-full py-2 rounded">Login</button>
+    </form>
+    <p id="loginMsg" class="text-center text-sm mt-2"></p>
+  </div>
+</div>
+
+<!-- Hero Section -->
+<section id="home" class="h-screen bg-cover bg-center flex items-center justify-center text-white" style="background-image:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');">
+  <div class="text-center bg-black/50 p-8 rounded-xl">
+    <h2 class="text-4xl md:text-6xl font-bold mb-4">Explore The World</h2>
+    <p class="mb-6">Find your perfect trip with us</p>
+    <button class="bg-blue-600 px-6 py-3 rounded-lg hover:bg-blue-700">Get Started</button>
+  </div>
+</section>
+
+<!-- Destinations -->
+<section id="destinations" class="py-16 max-w-7xl mx-auto px-4">
+  <h2 class="text-3xl font-bold text-center mb-10">Popular Destinations</h2>
+
+  <!-- Search + Filter -->
+  <div class="mb-8 flex flex-col md:flex-row gap-4 justify-center">
+    <input id="searchInput" type="text" placeholder="Search destination..." class="p-3 border rounded w-full md:w-1/3" />
+
+    <select id="districtFilter" class="p-3 border rounded w-full md:w-1/4">
+      <option value="">All Districts</option>
+      <option value="Rangamati">Rangamati</option>
+      <option value="Bandarban">Bandarban</option>
+      <option value="Cox's Bazar">Cox's Bazar</option>
+      <option value="Sylhet">Sylhet</option>
+      <option value="Chittagong">Chittagong</option>
+      <option value="Sundarban">Sundarban</option>
+      <option value="Sunamganj">Sunamganj</option>
+      <option value="Netrokona">Netrokona</option>
+    </select>
+
+    <select id="budgetFilter" class="p-3 border rounded w-full md:w-1/4">
+      <option value="">All Budget</option>
+      <option value="low">Low (৳0 - 20k)</option>
+      <option value="medium">Medium (৳20k - 50k)</option>
+      <option value="high">High (৳50k+)</option>
+    </select>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-6">
+
+    <!-- CARD TEMPLATE -->
+    <!-- Rangamati -->
+    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition duration-300"
+      data-title="Rangamati" data-budget="low" data-rating="4.5"
+      data-map="https://maps.google.com/?q=Rangamati"
+      data-image="./photo/rangamati/kaptai lake.jpg"
+      data-places="Kaptai Lake,Sajek Valley,Hanging Bridge,Shuvolong Waterfall">
+
+      <div class="relative">
+        <img src="./photo/rangamati/kaptai lake.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition duration-300" />
+
+        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Low Budget</span>
+        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.5</span>
+      </div>
+
+      <div class="p-4">
+        <h3 class="text-xl font-semibold">Rangamati</h3>
+        <p class="text-sm text-gray-500 mb-2">Beautiful hills and Kaptai Lake.</p>
+        <p class="text-xs text-gray-400">Click to explore →</p>
+      </div>
+    </div>
+
+    <!-- Bandarban -->
+    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition duration-300"
+      data-title="Bandarban" data-budget="medium" data-rating="4.7"
+      data-map="https://maps.google.com/?q=Bandarban"
+      data-image="./photo/bandorban/mountain.jpg"
+      data-places="Nilgiri,Nilachal,Boga Lake,Nafakhum Waterfall">
+
+      <div class="relative">
+        <img src="./photo/bandorban/mountain.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition duration-300" />
+        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Medium</span>
+        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.7</span>
+      </div>
+
+      <div class="p-4">
+        <h3 class="text-xl font-semibold">Bandarban</h3>
+        <p class="text-sm text-gray-500">Mountain beauty and waterfalls.</p>
+      </div>
+    </div>
+
+    <!-- Cox -->
+    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+      data-title="Cox's Bazar" data-budget="high" data-rating="4.8"
+      data-map="https://maps.google.com/?q=Coxs+Bazar"
+      data-image="./photo/Cox's Bazar/cox.jpg"
+      data-places="Inani Beach,Himchari,Laboni Beach,Marine Drive">
+
+      <div class="relative">
+        <img src="./photo/Cox's Bazar/cox.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">High</span>
+        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.8</span>
+      </div>
+
+      <div class="p-4">
+        <h3 class="text-xl font-semibold">Cox's Bazar</h3>
+        <p class="text-sm text-gray-500">World's longest sea beach.</p>
+      </div>
+    </div>
+
+    <!-- Sylhet -->
+    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+      data-title="Sylhet" data-budget="medium" data-rating="4.6"
+      data-map="https://maps.google.com/?q=Sylhet"
+      data-image="./photo/Sylhet/mosharraf-hossain-i3W2OJRKsL0-unsplash.jpg"
+      data-places="Jaflong,Ratargul Swamp Forest,Bichanakandi,Tea Gardens">
+
+      <div class="relative">
+        <img src="./photo/Sylhet/mosharraf-hossain-i3W2OJRKsL0-unsplash.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Medium</span>
+        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.6</span>
+      </div>
+
+      <div class="p-4">
+        <h3 class="text-xl font-semibold">Sylhet</h3>
+        <p class="text-sm text-gray-500">Tea gardens and natural beauty.</p>
+      </div>
+    </div>
+
+    <!-- Chittagong -->
+    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+      data-title="Chittagong" data-budget="medium" data-rating="4.4"
+      data-map="https://maps.google.com/?q=Chittagong"
+      data-image="./photo/Chittagong/tahsin-islam-gc8IPK97-hE-unsplash.jpg"
+      data-places="Patenga Beach,Foy's Lake,Batali Hill,Naval Beach">
+
+      <div class="relative">
+        <img src="./photo/Chittagong/tahsin-islam-gc8IPK97-hE-unsplash.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Medium</span>
+        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.4</span>
+      </div>
+
+      <div class="p-4">
+        <h3 class="text-xl font-semibold">Chittagong</h3>
+        <p class="text-sm text-gray-500">Port city with hills and sea.</p>
+      </div>
+    </div>
+
+    <!-- Sundarban -->
+    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+      data-title="Sundarban" data-budget="high" data-rating="4.9"
+      data-map="https://maps.google.com/?q=Sundarban"
+      data-image="./photo/Sundarban/mamun-srizon-mNVk2uupXs0-unsplash.jpg"
+      data-places="Royal Bengal Tiger,Harbaria,Karamjal,Kotka Beach">
+
+      <div class="relative">
+        <img src="./photo/Sundarban/mamun-srizon-mNVk2uupXs0-unsplash.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">High</span>
+        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.9</span>
+      </div>
+
+      <div class="p-4">
+        <h3 class="text-xl font-semibold">Sundarban</h3>
+        <p class="text-sm text-gray-500">Largest mangrove forest.</p>
+      </div>
+    </div>
+
+    <!-- Sunamganj -->
+    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+      data-title="Sunamganj" data-budget="low" data-rating="4.3"
+      data-map="https://maps.google.com/?q=Sunamganj"
+      data-image="./photo/Sunamganj/sabbir-ahmed-x6KenmrJwOE-unsplash.jpg"
+      data-places="Tanguar Haor,Niladri Lake,Barikka Tila,Watch Tower">
+
+      <div class="relative">
+        <img src="./photo/Sunamganj/sabbir-ahmed-x6KenmrJwOE-unsplash.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Low</span>
+        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.3</span>
+      </div>
+
+      <div class="p-4">
+        <h3 class="text-xl font-semibold">Sunamganj</h3>
+        <p class="text-sm text-gray-500">Haor and water beauty.</p>
+      </div>
+    </div>
+
+    <!-- Netrokona -->
+    <div class="destinationCard group cursor-pointer bg-white rounded-2xl shadow hover:shadow-xl overflow-hidden transition"
+      data-title="Netrokona" data-budget="low" data-rating="4.2"
+      data-map="https://maps.google.com/?q=Netrokona"
+      data-image="./photo/Netrokona/netrokona.jpg"
+      data-places="Birishiri,Someshwari River,Susang Durgapur,China Matir Pahar">
+
+      <div class="relative">
+        <img src="./photo/Netrokona/netrokona.jpg" class="h-56 w-full object-cover group-hover:scale-110 transition" />
+        <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">Low</span>
+        <span class="absolute top-2 right-2 bg-yellow-400 text-black text-xs px-2 py-1 rounded">⭐ 4.2</span>
+      </div>
+
+      <div class="p-4">
+        <h3 class="text-xl font-semibold">Netrokona</h3>
+        <p class="text-sm text-gray-500">Rural nature and hills.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Packages -->
+<section id="packages" class="py-16 bg-gray-100">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-10">Travel Packages</h2>
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-xl font-bold mb-2">Basic Tour</h3>
+        <p class="mb-4">3 days trip</p>
+        <p class="text-2xl font-bold text-blue-600 mb-4">৳25,000</p>
+        <button class="bookBtn bg-blue-600 text-white px-4 py-2 rounded"
+  data-title="Basic Tour"
+  data-duration="3 days trip"
+  data-price="৳25,000"
+  data-features="Hotel Stay,Free Breakfast,Guide Support">
+  Book Now
+</button>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-xl font-bold mb-2">Standard Tour</h3>
+        <p class="mb-4">5 days trip</p>
+        <p class="text-2xl font-bold text-blue-600 mb-4">৳50,000</p>
+        <button class="bookBtn bg-blue-600 text-white px-4 py-2 rounded"
+  data-title="Standard Tour"
+  data-duration="5 days trip"
+  data-price="৳50,000"
+  data-features="Hotel Stay,All Meals,Transport,Guide">
+  Book Now
+</button>
+      </div>
+
+      <div class="bg-white p-6 rounded-xl shadow">
+        <h3 class="text-xl font-bold mb-2">Premium Tour</h3>
+        <p class="mb-4">7 days trip</p>
+        <p class="text-2xl font-bold text-blue-600 mb-4">৳85,000</p>
+        <button class="bookBtn bg-blue-600 text-white px-4 py-2 rounded"
+  data-title="Premium Tour"
+  data-duration="7 days trip"
+  data-price="৳85,000"
+  data-features="5 Star Hotel,All Meals,Private Car,VIP Guide">
+  Book Now
+</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact" class="py-16 max-w-4xl mx-auto px-4">
+  <h2 class="text-3xl font-bold text-center mb-10">Contact Us</h2>
+  <form class="bg-white p-6 rounded-xl shadow space-y-4">
+    <input type="text" placeholder="Your Name" class="w-full p-3 border rounded" />
+    <input type="email" placeholder="Your Email" class="w-full p-3 border rounded" />
+    <textarea placeholder="Your Message" class="w-full p-3 border rounded"></textarea>
+    <button class="bg-blue-600 text-white px-6 py-2 rounded">Send</button>
+  </form>
+</section>
+
+<!-- Package Modal -->
+<!-- Package Modal -->
+<div id="packageModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-xl w-96 relative max-h-[90vh] overflow-y-auto">
+    
+    <button id="closePackage" class="absolute top-2 right-2 text-xl">✖</button>
+    
+    <h2 id="packageTitle" class="text-2xl font-bold mb-2"></h2>
+    <p id="packageDuration" class="mb-2"></p>
+    <p id="packagePrice" class="text-blue-600 font-bold mb-4"></p>
+
+    <ul id="packageFeatures" class="list-disc pl-5 space-y-1 mb-4"></ul>
+
+    <!-- ✅ BOOKING FORM -->
+    <form id="packageBookingForm" class="space-y-3">
+      <input type="text" placeholder="Your Name" required class="w-full p-2 border rounded" />
+      <input type="tel" placeholder="Phone Number" required class="w-full p-2 border rounded" />
+      <input type="text" placeholder="Address" required class="w-full p-2 border rounded" />
+      <input type="email" placeholder="Gmail" required class="w-full p-2 border rounded" />
+      <input type="date" required class="w-full p-2 border rounded" />
+
+      <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded w-full">
+        Confirm Booking
+      </button>
+    </form>
+
+  </div>
+</div>
+
+<!-- Destination Modal -->
+<!-- Destination Modal -->
+<div id="destinationModal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-xl w-96 relative text-center">
+    <button id="closeDestination" class="absolute top-2 right-2 text-xl">✖</button>
+
+    <img id="destinationImage" class="w-full h-40 object-cover rounded mb-3" />
+
+    <h2 id="destinationTitle" class="text-2xl font-bold mb-2"></h2>
+
+    <!-- Rating -->
+    <div id="destinationRating" class="text-yellow-400 mb-2"></div>
+
+    <ul id="destinationList" class="list-disc pl-5 text-left mb-3"></ul>
+
+    <!-- Google Map -->
+    <a id="mapLink" href="#" target="_blank" class="text-blue-600 underline block mb-3">
+      View on Google Map 📍
+    </a>
+
+    <!-- Book Button -->
+    <button id="bookDestinationBtn" class="bg-blue-600 text-white px-4 py-2 rounded w-full">
+      Book This Destination
+    </button>
+  </div>
+</div>
+
+<!-- Booking History -->
+<section id="history" class="py-16 bg-white">
+  <div class="max-w-5xl mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-6">My Booking History</h2>
+
+    <div id="bookingList" class="space-y-4">
+      <!-- Dynamic bookings will show here -->
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white text-center py-4">
+  <p>© 2026 TravelGo. All rights reserved.</p>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const loginModal = document.getElementById('loginModal');
+  const loginBtn = document.getElementById('loginBtn');
+  const loginBtnMobile = document.getElementById('loginBtnMobile');
+  const closeLogin = document.getElementById('closeLogin');
+  const loginForm = document.getElementById('loginForm');
+  const loginMsg = document.getElementById('loginMsg');
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  function openLogin(){
+    loginModal.classList.remove('hidden');
+    loginModal.classList.add('flex');
+  }
+
+  function closeLoginModal(){
+    loginModal.classList.add('hidden');
+    loginModal.classList.remove('flex');
+  }
+
+  loginBtn.addEventListener('click', openLogin);
+  loginBtnMobile.addEventListener('click', openLogin);
+  closeLogin.addEventListener('click', closeLoginModal);
+
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = loginForm[0].value;
+    const password = loginForm[1].value;
+
+    // Dummy validation (frontend only)
+    if(email === "admin@gmail.com" && password === "123456"){
+      loginMsg.textContent = "Login Successful ✅";
+      loginMsg.classList.add('text-green-600');
+      setTimeout(closeLoginModal, 1000);
+    } else {
+      loginMsg.textContent = "Invalid Email or Password ❌";
+      loginMsg.classList.add('text-red-600');
+    }
+  });
+</script>
+
+
+<!-- package script  -->
+<script>
+const packageModal = document.getElementById('packageModal');
+const closePackage = document.getElementById('closePackage');
+
+const packageTitle = document.getElementById('packageTitle');
+const packageDuration = document.getElementById('packageDuration');
+const packagePrice = document.getElementById('packagePrice');
+const packageFeatures = document.getElementById('packageFeatures');
+
+const bookButtons = document.querySelectorAll('.bookBtn');
+
+// OPEN MODAL
+bookButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    packageTitle.textContent = btn.dataset.title;
+    packageDuration.textContent = btn.dataset.duration;
+    packagePrice.textContent = btn.dataset.price;
+
+    const features = btn.dataset.features.split(',');
+    packageFeatures.innerHTML = "";
+
+    features.forEach(f => {
+      const li = document.createElement('li');
+      li.textContent = f;
+      packageFeatures.appendChild(li);
+    });
+
+    packageModal.classList.remove('hidden');
+    packageModal.classList.add('flex');
+  });
+});
+
+// CLOSE MODAL
+closePackage.addEventListener('click', () => {
+  packageModal.classList.add('hidden');
+  packageModal.classList.remove('flex');
+});
+
+// FORM SUBMIT
+const packageBookingForm = document.getElementById('packageBookingForm');
+
+packageBookingForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const inputs = packageBookingForm.querySelectorAll('input');
+
+  const bookingData = {
+    title: packageTitle.textContent,
+    duration: packageDuration.textContent,
+    price: packagePrice.textContent,
+    name: inputs[0].value,
+    phone: inputs[1].value,
+    address: inputs[2].value,
+    email: inputs[3].value,
+    date: inputs[4].value
+  };
+
+  let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+  bookings.push(bookingData);
+
+  localStorage.setItem('bookings', JSON.stringify(bookings));
+
+  alert("Package Booking Confirmed ✅");
+
+  packageBookingForm.reset();
+
+  packageModal.classList.add('hidden');
+  packageModal.classList.remove('flex');
+
+  loadBookings();
+  updateBookingCount();
+});
+</script>
+
+<!-- Form submit handle -->
+<script>
+const packageBookingForm = document.getElementById('packageBookingForm');
+
+packageBookingForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const inputs = packageBookingForm.querySelectorAll('input');
+
+  const bookingData = {
+    title: packageTitle.textContent,
+    duration: packageDuration.textContent,
+    price: packagePrice.textContent,
+    name: inputs[0].value,
+    phone: inputs[1].value,
+    address: inputs[2].value,
+    email: inputs[3].value,
+    date: inputs[4].value
+  };
+
+  let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+  bookings.push(bookingData);
+
+  localStorage.setItem('bookings', JSON.stringify(bookings));
+
+  alert("Package Booking Confirmed ✅");
+
+  packageBookingForm.reset();
+
+  packageModal.classList.add('hidden');
+  packageModal.classList.remove('flex');
+
+  loadBookings();
+  updateBookingCount();
+});
+</script>
+
+<!-- Booking Success Popup -->
+<div id="successPopup" class="fixed inset-0 flex items-center justify-center hidden z-50">
+  <div class="bg-green-600 text-white px-6 py-4 rounded-xl shadow-lg text-center">
+    Booking Confirmed ✅
+  </div>
+</div>
+
+<script>
+
+const confirmBookingBtn = document.getElementById('confirmBookingBtn');
+const successPopup = document.getElementById('successPopup');
+
+confirmBookingBtn.addEventListener('click', () => {
+  // Show popup
+  successPopup.classList.remove('hidden');
+
+  // Auto hide after 2 sec
+  setTimeout(() => {
+    successPopup.classList.add('hidden');
+  }, 2000);
+
+  // Close package modal (optional)
+  packageModal.classList.add('hidden');
+  packageModal.classList.remove('flex');
+});
+
+</script>
+
+
+<!-- destination script -->
+<script>
+const destinationModal = document.getElementById('destinationModal');
+const closeDestination = document.getElementById('closeDestination');
+
+const destinationTitle = document.getElementById('destinationTitle');
+const destinationList = document.getElementById('destinationList');
+const destinationImage = document.getElementById('destinationImage');
+const destinationRating = document.getElementById('destinationRating');
+const mapLink = document.getElementById('mapLink');
+const bookDestinationBtn = document.getElementById('bookDestinationBtn');
+
+const bookingList = document.getElementById('bookingList');
+
+let currentBooking = {};
+
+const destinationCards = document.querySelectorAll('.destinationCard');
+
+destinationCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const title = card.dataset.title;
+    const places = card.dataset.places.split(',');
+    const image = card.dataset.image;
+    const map = card.dataset.map;
+    const rating = card.dataset.rating;
+
+    // Save current selection
+    currentBooking = { title, image, rating };
+
+    destinationTitle.textContent = title;
+    destinationImage.src = image;
+    mapLink.href = map;
+
+    // Places
+    destinationList.innerHTML = "";
+    places.forEach(place => {
+      const li = document.createElement('li');
+      li.textContent = place;
+      destinationList.appendChild(li);
+    });
+
+    // Rating
+    destinationRating.innerHTML = "⭐ " + rating;
+
+    destinationModal.classList.remove('hidden');
+    destinationModal.classList.add('flex');
+  });
+});
+
+// Close modal
+closeDestination.addEventListener('click', () => {
+  destinationModal.classList.add('hidden');
+  destinationModal.classList.remove('flex');
+});
+
+
+// ✅ SAVE BOOKING
+bookDestinationBtn.addEventListener('click', () => {
+  let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+  bookings.push({
+    ...currentBooking,
+    date: new Date().toLocaleString()
+  });
+
+  localStorage.setItem('bookings', JSON.stringify(bookings));
+
+  alert("Booking Saved ✅");
+
+  loadBookings();
+  updateBookingCount(); // ✅ এই লাইনটা নতুন add করবা
+});
+
+
+// ✅ LOAD BOOKINGS
+function loadBookings(){
+  let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+  bookingList.innerHTML = "";
+
+  if(bookings.length === 0){
+    bookingList.innerHTML = "<p class='text-center text-gray-500'>No bookings yet</p>";
+    return;
+  }
+
+  bookings.reverse().forEach(b => {
+    const div = document.createElement('div');
+    div.className = "flex items-center gap-4 bg-gray-100 p-4 rounded-lg shadow";
+
+    div.innerHTML = `
+      <img src="${b.image}" class="w-20 h-16 object-cover rounded"/>
+      <div>
+        <h3 class="font-bold">${b.title}</h3>
+        <p class="text-sm text-gray-500">⭐ ${b.rating}</p>
+        <p class="text-xs text-gray-400">${b.date}</p>
+      </div>
+    `;
+
+    bookingList.appendChild(div);
+  });
+}
+
+// Load on page start
+loadBookings();
+</script>
+
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const districtFilter = document.getElementById('districtFilter');
+const budgetFilter = document.getElementById('budgetFilter');
+
+const allCards = document.querySelectorAll('.destinationCard');
+
+function filterDestinations() {
+  const searchText = searchInput.value.toLowerCase();
+  const selectedDistrict = districtFilter.value;
+  const selectedBudget = budgetFilter.value;
+
+  allCards.forEach(card => {
+    const title = card.dataset.title.toLowerCase();
+    const budget = card.dataset.budget;
+
+    let matchSearch = title.includes(searchText);
+    let matchDistrict = selectedDistrict === "" || card.dataset.title === selectedDistrict;
+    let matchBudget = selectedBudget === "" || budget === selectedBudget;
+
+    if (matchSearch && matchDistrict && matchBudget) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
+// Event listeners
+searchInput.addEventListener('input', filterDestinations);
+districtFilter.addEventListener('change', filterDestinations);
+budgetFilter.addEventListener('change', filterDestinations);
+</script>
+
+<script>
+const bookingCount = document.getElementById('bookingCount');
+
+function updateBookingCount(){
+  let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+
+  if(bookings.length > 0){
+    bookingCount.textContent = bookings.length;
+    bookingCount.classList.remove('hidden');
+  } else {
+    bookingCount.classList.add('hidden');
+  }
+}
+
+// page load এ run
+updateBookingCount();
+</script>
+
+
+<!-- Smooth scroll -->
+<script>
+const historyBtn = document.getElementById('historyBtn');
+
+historyBtn.addEventListener('click', () => {
+  const historySection = document.getElementById('history');
+
+  historySection.scrollIntoView({
+    behavior: 'smooth'
+  });
+});
+</script>
+
+</body>
+</html>
