@@ -322,11 +322,15 @@ const districtFilter = document.getElementById('districtFilter');
 const budgetFilter = document.getElementById('budgetFilter');
 
 const allCards = document.querySelectorAll('.destinationCard');
+const noResult = document.getElementById('noResult'); // 👈 এই লাইন নতুন add করবা
 
+// 🔁 পুরান function delete করে এটা বসাও
 function filterDestinations() {
   const searchText = searchInput.value.toLowerCase();
   const selectedDistrict = districtFilter.value;
   const selectedBudget = budgetFilter.value;
+
+  let visibleCount = 0;
 
   allCards.forEach(card => {
     const title = card.dataset.title.toLowerCase();
@@ -337,8 +341,20 @@ function filterDestinations() {
       (selectedDistrict === "" || card.dataset.title === selectedDistrict) &&
       (selectedBudget === "" || budget === selectedBudget);
 
-    card.style.display = show ? "block" : "none";
+    if (show) {
+      card.style.display = "";   // ✅ FIX (block না, empty string)
+      visibleCount++;
+    } else {
+      card.style.display = "none";
+    }
   });
+
+  // ✅ 404 show/hide
+  if (visibleCount === 0) {
+    noResult.classList.remove('hidden');
+  } else {
+    noResult.classList.add('hidden');
+  }
 }
 
 searchInput.addEventListener('input', filterDestinations);
